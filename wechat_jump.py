@@ -91,33 +91,11 @@ def updatefig(*args):
         pull_screenshot()
         #
         print('-'*40)
-        cir_point=match_pic(pwd+'chessman.png',pwd+'autojump.png')
+        cir_point=match_pic(pwd+'templete/chessman.png',pwd+'autojump.png')
         #print('棋子当前位置',cir_point)#标记质心
         im.set_array(update_data())
         update = False
     return im,
-
-def on_click(event):
-    global update
-    global ix, iy
-    global click_count
-    global cor
-
-    ix, iy = event.xdata, event.ydata
-    coords = [(ix, iy)]
-    print('now = ', coords)
-    cor.append(coords)
-
-    click_count += 1
-    if click_count > 1:
-        click_count = 0
-        cor1 = cor.pop()
-        cor2 = cor.pop()
-        distance = (cor1[0][0] - cor2[0][0])**2 + (cor1[0][1] - cor2[0][1])**2
-        distance = distance ** 0.5
-        print('distance = ', distance)
-        jump(distance)
-        update = True
 
 def on_click2(event):
     global jump_count#跳跃次数
@@ -129,10 +107,6 @@ def on_click2(event):
     global cir_point
     global score
 
-#    score=get_score()
-#    if jump_count>0:
-#        score_avg=round(score/jump_count,2)
-#        print('平均分%s'%score_avg)
     ix, iy = event.xdata, event.ydata
     coords = (ix, iy)
     #print('点击位置= ', coords)
